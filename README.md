@@ -39,8 +39,3 @@ Tasks That Need to be Run Periodically for advanced functionality
 --------------------------------------
 * rake tasks:update_asset_prices - needs to be run once a day to set the current market value of each fund/etf/stock
 * rake tasks:send_purchase_lists - Generates and sends out an email of the funds you'll need to purchase based on the current market value of what you currently own and your desired portfolio allocation.  This should be run daily, and only sends emails when a purchase needs to be made
-
-
-
-TODO
-add investment account company link to navigation
