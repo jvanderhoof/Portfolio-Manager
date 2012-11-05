@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @investment_asset_category.name %>
+</p>
+
+<p>
+  <b>Key:</b>
+  <%= @investment_asset_category.key %>
+</p>
+
+
+<%= link_to 'Edit', edit_investment_asset_category_path(@investment_asset_category) %> |
+<%= link_to 'Back', investment_asset_categories_path %>

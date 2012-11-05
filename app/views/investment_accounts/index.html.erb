@@ -1,0 +1,32 @@
+<h1>Accounts</h1>
+<br/>
+<p>Please add any 401k, IRA, Roth IRA, Investment, or 403b accounts you currently have.  If you don't have any retirement/investment accounts setup, we'll tell you what accounts you should open.</p>
+<%= form_for @user, :url => investment_account_path(@user), :html => {:class => 'well form-horizontal'} do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this information from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<fieldset>
+		<%= f.fields_for :people do |p| %>
+			<h4><%= p.object.name %>'s Retirement/Investment Accounts</h4>
+			<%= render :partial => "person_fields", :locals => {:f => p} %>
+		<% end %>		
+	</fieldset>
+	<div class="actions">
+    <%= f.submit "Save", :class => 'btn-primary btn commit create' %>
+  </div>  
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.account_selector').change(function(){set_investment_company_fields(this)});
+	});
+</script>

@@ -1,0 +1,5 @@
+<h1>Edit Your Investment Plan</h1>
+
+<%= form_for @plan, :html => {:class => 'well form-horizontal'} do |f| %>
+	<%= render :partial => "form", :locals => {:f => f} %>
+<% end %>

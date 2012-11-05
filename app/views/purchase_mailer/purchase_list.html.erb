@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Investment Purchases <%= "for #{@investment_plan.name}"  if @investment_plan.name.present? %></h2>
+    <p>
+			Below is the list of investments you need to purchase:
+    </p>
+		<table style='width: 500px;border-collapse:collapse;'>
+			<tr>
+				<th style='border:1px solid black;padding:4px;background-color:#ccc;'>Shares</th>
+				<th style='border:1px solid black;padding:4px;background-color:#ccc;'>Investment Name</th>
+				<th style='border:1px solid black;padding:4px;background-color:#ccc;'>Current Per Share Price</th>
+			</tr>
+			<% @buy_list.buy_list_assets.each do |bla| %>
+				<tr>
+					<td style='border:1px solid black;padding:3px;'><%= bla.share_count %></td>
+					<td style='border:1px solid black;padding:3px;'>(<%= bla.investment_asset.symbol %>) <%= bla.investment_asset.name.html_safe %></td>
+					<td style='border:1px solid black;padding:3px;'><%= number_to_currency(bla.share_price) %></td>
+				</tr>			
+			<% end %>
+		</table>
+		<p>Once you've made your purchases, please update your plan here: <%= link_to "#{DOMAIN}#{investment_plan_path(@investment_plan)}","#{DOMAIN}#{investment_plan_path(@investment_plan)}" %></p>
+    <p>Thanks for using InvestingSimplified.net!</p>
+  </body>
+</html>

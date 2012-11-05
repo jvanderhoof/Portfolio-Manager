@@ -1,0 +1,14 @@
+
+<p>
+  <b>Name:</b>
+  <%= @investment_account_company.name %>
+</p>
+
+<p>
+  <b>Investment account:</b>
+  <%= @investment_account_company.available_assets %>
+</p>
+
+
+<%= link_to 'Edit', edit_investment_account_company_path(@investment_account_company) %> |
+<%= link_to 'Back', investment_account_companies_path %>

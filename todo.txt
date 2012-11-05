@@ -1,0 +1,51 @@
+- Checkbox for email notification per investment plan
+- Email buy list on buy date
+- create a buy_list for existing portfolio
+
+
+
+
+
+problem - planning for retirement.  too many investment options, too many investment vehicles.
+
+solution - a tool to tell you what to invest where and when
+
+	- pick a general investment strategy - ex. 15% bonds, 15% international stock, 60% US stock
+	- pick a percentage of income to save
+	- generate investment strategy optimizing taxes
+		- 401k? - match percent, options
+		- combined income - roth ira/ira
+		- investments
+	
+	- give buy list on each vehicle
+	- show return across all vehicles
+	
+
+
+	
+- create a user 
+		- percent to save
+
+- create a plan
+	- investement_asset_category
+	- allocation percentage
+	
+- add your information
+	- person 1: 
+		- Birthday (month/year) - for age
+		- income
+		- investment_accounts
+			- type (IRA, Roth IRA, 401k, 403b, Investment)
+			- account options
+			- match?
+			- contribution frequency
+
+- generate a portfolio for each Investment Account based on account options using the plan as a template
+	
+
+
+
+
+- to add:
+	- has access to a 401k/403b checkbox
+	- 

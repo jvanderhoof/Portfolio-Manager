@@ -1,0 +1,33 @@
+<%= form_tag "/auth/identity/register" do %>
+  <% if @identity && @identity.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <ul>
+      <% @identity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<fieldset class="inputs">
+		<div class="string clearfix required stringish" id="name_input">
+	    <%= label_tag :name %>
+	    <div class="input"><%= text_field_tag :name, @identity.try(:name) %></div>
+		</div>
+		<div class="string clearfix required stringish" id="email_input">
+	    <%= label_tag :email %>
+	    <div class="input"><%= text_field_tag :email, @identity.try(:email) %></div>
+		</div>
+		<div class="string clearfix required stringish" id="email_input">
+	    <%= label_tag :password %>
+	    <div class="input"><%= password_field_tag :password, @identity.try(:password) %></div>
+		</div>
+		<div class="string clearfix required stringish" id="email_input">
+	    <%= label_tag :password_confirmation %>
+	    <div class="input"><%= password_field_tag :password_confirmation, @identity.try(:password_confirmation) %></div>
+		</div>
+	</fieldset>
+	<div class="actions">
+		<%= submit_tag "Register", {:class => "primary btn commit update" } %>
+	</div>
+<% end %>

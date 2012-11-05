@@ -1,0 +1,2 @@
+module InvestmentPlansHelper
+end

@@ -1,0 +1,12 @@
+<%= semantic_form_for @investment_asset, :html => {:class => 'well form-horizontal'} do |f| %>
+  <%= f.semantic_errors %>
+  <%= f.inputs do %>
+		<%= f.input :symbol %>
+		<%= f.input :name %>
+		<%= f.input :investment_asset_category, :collection => InvestmentAssetCategory.order('name') %>
+		<%= f.input :expense_ratio %>
+	<% end %>
+  <%= f.buttons do %>
+    <%= f.commit_button :button_html => {:class => "primary"} %>
+  <% end %>	
+<% end %>

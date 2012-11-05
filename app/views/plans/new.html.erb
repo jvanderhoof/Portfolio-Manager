@@ -1,0 +1,8 @@
+<h1>Create Your Investment Plan</h1>
+
+<p>
+	Below is a suggested portfolio for you to use as a starting point.  It is a mix of inflation protected bonds, US stock and International stock.  Feel free to modify and make it your own.
+</p>
+<%= form_for @plan, :html => {:class => 'well form-horizontal'} do |f| %>
+	<%= render :partial => "form", :locals => {:f => f} %>
+<% end %>

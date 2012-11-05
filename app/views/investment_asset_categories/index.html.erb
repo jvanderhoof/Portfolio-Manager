@@ -1,0 +1,24 @@
+<h1>Investment Asset Category</h1>
+
+<table class='table table-striped'>
+  <tr>
+    <th>Name</th>
+    <th>Parent</th>
+    <th></th>
+  </tr>
+
+<% @investment_asset_categories.each do |investment_asset_category| %>
+  <tr>
+    <td><%= link_to investment_asset_category.name, investment_asset_category %></td>
+    <td><%= investment_asset_category.parent.name if investment_asset_category.parent.present? %></td>
+    <td>
+			<%= link_to 'Edit', edit_investment_asset_category_path(investment_asset_category) %>
+    	<%= link_to 'Destroy', investment_asset_category, :confirm => 'Are you sure?', :method => :delete %>
+		</td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Investment asset category', new_investment_asset_category_path %>

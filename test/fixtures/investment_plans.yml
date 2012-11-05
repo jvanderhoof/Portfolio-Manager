@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  initial_contribution: 1.5
+  time_period: MyString
+  start_date: 2011-12-22
+  banked_value: 1.5
+  total_contributed_value: 1.5
+  contributed_amount: 1.5
+  portfolio_id: 1
+  name: MyString
+
+two:
+  initial_contribution: 1.5
+  time_period: MyString
+  start_date: 2011-12-22
+  banked_value: 1.5
+  total_contributed_value: 1.5
+  contributed_amount: 1.5
+  portfolio_id: 1
+  name: MyString

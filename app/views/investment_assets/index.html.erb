@@ -1,0 +1,27 @@
+<h1>Listing Investment Assets</h1>
+
+<table class='table table-striped'>
+  <tr>
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Category</th>
+		<th>Expense Ratio</th>
+    <th></th>
+  </tr>
+
+<% @investment_assets.each do |investment_asset| %>
+  <tr>
+		<td><%= investment_asset.symbol %></td>
+		<td><%= investment_asset.name.html_safe %></td>
+		<td><%= investment_asset.investment_asset_category.name unless investment_asset.investment_asset_category.blank? %></td>
+		<td><%= investment_asset.expense_ratio %></td>
+    <td><%= link_to 'Show', investment_asset %>&nbsp;&nbsp;
+    <%= link_to 'Edit', edit_investment_asset_path(investment_asset) %>&nbsp;&nbsp;
+    <%= link_to 'Destroy', investment_asset, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Investment asset', new_investment_asset_path %>

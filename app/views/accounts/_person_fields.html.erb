@@ -1,0 +1,42 @@
+<div class="person fields">
+	<div class="control-group">
+		<%= f.label :name, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :name %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :birthday, :class => 'control-label' %>
+		<div class="controls">
+			<%= f.date_select :birthday, {:start_year => Time.now.year - 105, :end_year => Time.now.year - 14, :discard_day => true, :order => [:month,:year,:day]}, {:style => 'width: 100px'} %>
+			<p class="help-block">To determine your IRA contribution amount<p>
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<%= f.label :income, "Annual Income", :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_field :income %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :has_401k, "401k/403b?", :class => 'control-label' %>
+		<div class="controls">
+			<%= f.check_box :has_401k %>
+			<p class="help-block">Does your company offer a 401k or 403b retirement plan?</p>
+		</div>
+	</div>
+
+	<%= f.hidden_field :_destroy, {:value => 'false'}%>
+
+	<!--<div>-->
+		<%#= f.fields_for :investment_accounts do |ia| %>
+			<%#= render :partial => "investment_account_fields", :locals => {:f => ia} %>
+		<%# end %>
+		<!--<p style='margin-left:100px;'><%#= link_to_add_fields "New Investment Account", f, :investment_accounts %></p>-->
+	<!--</div>-->
+	
+	<div class='remove_person'></div>
+	<!--<div style='display:none'<%#= link_to_remove_fields "Remove Person", f %></div>-->
+</div>

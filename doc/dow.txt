@@ -1,0 +1,31 @@
+Company	Symbol	Industry	Date Added
+3M	MMM	Conglomerate	 1976-08-09 (as Minnesota Mining and Manufacturing)
+Alcoa	AA	Aluminum	 1959-06-01 (as Aluminum Company of America)
+American Express	AXP	Consumer finance	 1982-08-30
+AT&T	T	Telecommunication	 1999-11-01 (as SBC Communications)
+Bank of America	BAC	Banking	 2008-02-19
+Boeing	BA	Aerospace and defense	 1987-03-12
+Caterpillar	CAT	Construction and mining equipment	 1991-05-06
+Chevron Corporation	CVX	Oil & gas	 2008-02-19
+Cisco Systems	CSCO	Computer networking	 2009-06-08
+Coca-Cola	KO	Beverages	 1987-03-12
+DuPont	DD	Chemical industry	 1935-11-20 (also 1924-01-22 to 1925-08-31)
+ExxonMobil	XOM	Oil & gas	 1928-10-01 (as Standard Oil of New Jersey)
+General Electric	GE	Conglomerate	 1907-11-07
+Hewlett-Packard	HPQ	Technology	 1997-03-17
+The Home Depot	HD	Home improvement retailer	 1999-11-01
+Intel	INTC	Semiconductors	 1999-11-01
+IBM	IBM	Computers and technology	 1979-06-29
+Johnson & Johnson	JNJ	Pharmaceuticals	 1997-03-17
+JPMorgan Chase	JPM	Banking	 1991-05-06 (as J.P. Morgan & Company)
+Kraft Foods	KFT	Food processing	 2008-09-22
+McDonald's	MCD	Fast food	 1985-10-30
+Merck	MRK	Pharmaceuticals	 1979-06-29
+Microsoft	MSFT	Software	 1999-11-01
+Pfizer	PFE	Pharmaceuticals	 2004-04-08
+Procter & Gamble	PG	Consumer goods	 1932-05-26
+Travelers	TRV	Insurance	 2009-06-08
+United Technologies Corporation	UTX	Conglomerate	 1939-03-14 (as United Aircraft)
+Verizon Communications	VZ	Telecommunication	 2004-04-08
+Wal-Mart	WMT	Retail	 1997-03-17
+Walt Disney	DIS	Broadcasting and entertainment	 1991-05-06

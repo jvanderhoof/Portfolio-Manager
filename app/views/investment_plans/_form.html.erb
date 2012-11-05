@@ -1,0 +1,72 @@
+<div id="js-tabs">
+	<ul>
+		<li><a href="#tabs-1">Portfolio</a></li>
+		<li><a href="#tabs-2">Details</a></li>
+	</ul>
+
+	<%= semantic_form_for @investment_plan, :html => {:class => 'well form-horizontal'} do |f| %>
+	  <%= f.semantic_errors %>
+	  <%= f.inputs do %>
+			<div id='tabs-1'>
+				<%= f.input :portfolio, :collection => Portfolio.where(["template = ? or user_id = ?", true, ((current_user) ? current_user.id : 0)]) %>
+				<input type='button' value='Next' id='next_button' class='btn btn-primary commit create' /> <br /><br />
+				<h4>Standard Portfolios</h4>
+				<ul class='unstyled'>
+				<% Portfolio.where({:template => true}).each do |p| %>
+					<li>
+						<strong><%= link_to p.name, '#', :id => "portfolio-#{p.id}", :class => 'portfolio' %></strong> 
+						- <%= link_to 'View', portfolio_path(p), :target => 'new' %>
+						<% if p.description.present? %>
+							- <%= p.description %>
+						<% end %>
+					</li>
+				<% end %>
+				</ul>
+				
+				<% if current_user && Portfolio.where({:user_id => current_user.id}).length > 0 %>
+					<h4>Custom Portfolios</h4>
+					<ul class='unstyled'>
+					<% Portfolio.where({:user_id => current_user.id}).each do |p| %>
+						<li>
+							<strong><%= link_to p.name, '#', :id => "portfolio-#{p.id}", :class => 'portfolio' %></strong> 
+							- <%= link_to 'View', portfolio_path(p), :target => 'new' %>
+							<% if p.description.present? %>
+								- <%= p.description %>
+							<% end %>
+						</li>					
+					<% end %>
+					</ul>
+				<% end %>
+				<% if current_user %>
+					<%= link_to 'New Portfolio', new_portfolio_path %>
+				<% end %>
+			</div>
+			<div id='tabs-2'>
+		    <%= f.input :name, :hint => "Give this plan a Name" %>
+		    <%= f.input :initial_contribution, :hint => "How much do you currently have to invest?" %>
+				<%= f.input :start_date, :as => :string, :hint => "When do you want to start contributing to this plan?", :input_html => {:class => 'datepicker'} %>
+				<%= f.input :time_period, :collection => ['Weekly', 'Bi-Weekly', 'Twice Monthly', 'Monthly', 'Once'], :label => 'Contribution frequency', :hint => "How often would you like to contribute?" %>
+				<%= f.input :contribution_amount, :hint => "How much can you contribute each time? (You can change this later if you'd like) " %>
+				<%= f.input :email_updates, :label => 'Email Notifications' %>
+			  <%= f.buttons do %>
+			    <%= f.commit_button :button_html => {:class => "btn btn-primary"} %>
+			  <% end %>
+			</div>
+	  <% end %>
+	<% end %>
+</div>
+
+<script>
+	$(function() {
+		var $tabs = $( "#js-tabs" ).tabs();
+		$('.portfolio').click(function(){
+			$('#investment_plan_portfolio_id').val($(this).attr('id').split('-')[1]);
+		});
+		$('#next_button').click(function(){
+			$tabs.tabs('select', 1);
+		});
+		<% if @investment_plan.portfolio.present? %>
+			$tabs.tabs('select', 1);
+		<% end %>
+	});
+</script>

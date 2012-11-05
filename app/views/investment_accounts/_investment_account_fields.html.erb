@@ -1,0 +1,38 @@
+<div style='padding-bottom: 10px;margin-left:30px;' class="investment_asset_category_plan fields">
+	<div class="string clearfix required stringish control-group">
+		<%= f.label :investment_account_type_id, 'Account Type', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :investment_account_type_id, InvestmentAccountType.order('name').map{|i| [i.name, i.id]}, {:include_blank => true}, {:class => 'account_selector'} %>
+		</div>
+	</div>
+	<div class="string clearfix required stringish control-group">
+		<%= f.label :investment_account_company_id, 'Account Provider', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.select :investment_account_company_id, InvestmentAccountCompany.order('name').map{|i| [i.name, i.id]}, {:include_blank => true} %>
+		</div>
+	</div>
+	<div class='401k' style='display:<% if (f.object.investment_account_type.present? && ['401k/403b','Investment Account'].include?(f.object.investment_account_type.name)) %>block<% else %>none<% end %>;'>
+		<div class="string clearfix required stringish control-group employer_match">
+			<%= f.label :match, 'Employer Match', :class => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :match %>
+			</div>
+		</div>
+
+		<div class="string clearfix required stringish control-group">
+			<%= f.label :available_funds, 'Available Funds', :class => 'control-label' %>
+			<div class="controls">
+				<%= f.text_area :available_funds, :cols => 80, :rows => 5 %>
+			</div>
+			<p class="help-block">Please add a list of the fund choice symbols you have available through your 401k/403b account. ex: MRAXX, NECZX, OSICX, BPRCX, etc.</p>
+		</div>
+	</div>
+		
+	<%= f.hidden_field :_destroy, {:value => 'false'}%>
+	<div class="string clearfix required stringish control-group">
+		<div class="controls">
+			<%= link_to_remove_fields "Remove Account", f %>
+		</div>
+	</div>
+</div>
+

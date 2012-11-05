@@ -1,0 +1,64 @@
+<h1>Your Information</h1>
+
+<%= form_for @user, :url => account_path(@user), :html => {:class => 'well form-horizontal'} do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this information from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<fieldset>
+		<div class="control-group" id="portfolio_name_input">
+	    <%= f.label :percent_to_save, 'Percent to Save', :class => 'control-label' %>
+			<div class="controls">
+	    	<%= f.text_field :percent_to_save %>
+				<p class="help-block">The percent of your income you'd like to save</p>
+			</div>
+	  </div>
+		<!--<div class="string clearfix required stringish control-group" id="portfolio_name_input">
+	    <%= f.label :send_emails, 'Email Notifications?', :class => 'control-label' %>
+			<div class="controls">
+	    	<%= f.check_box :send_emails %>
+			</div>
+	  </div>-->
+	
+			<%= f.fields_for :people do |p| %>
+				<%= render :partial => "person_fields", :locals => {:f => p} %>
+			<% end %>
+			<p id='new_person' style='display:none'><%= link_to_add_fields "New Person", f, :people %></p>
+	
+			<div class="control-group">
+		    <%= f.label :has_partner, 'Are you Married?', :class => 'control-label' %>
+				<div class="controls">
+		    	<%= f.check_box :has_partner %>
+					<p class="help-block">To determine your Roth IRA contribution.</p>
+				</div>
+		  </div>
+	
+	
+	</fieldset>
+  <div class="actions">
+    <%= f.submit "Save", :class => 'btn-primary btn commit create' %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.account_selector').change(function(){set_investment_company_fields(this)});
+		$('.remove_person').first().hide();
+		$('#user_has_partner').change(function(){
+			if ($('#user_has_partner').is(':checked')) {
+				$('#new_person > a').first().click();
+			} else {
+				remove_fields($('.remove_person').last());//.click();
+			}
+		});
+	});
+</script>

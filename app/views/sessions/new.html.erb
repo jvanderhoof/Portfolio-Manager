@@ -1,0 +1,22 @@
+<p>
+  <!--<strong>Don't use these services?</strong>-->
+  <%= link_to "Create an account", new_identity_path %> or login below.
+</p>
+
+<%= form_tag "/auth/identity/callback" do %>
+	<fieldset class="inputs">
+		<div class="string clearfix required stringish" id="auth_key_input">
+	    <%= label_tag :auth_key, "Email: " %>
+	    <div class="input"><%= text_field_tag :auth_key %></div>
+		</div>
+		<div class="string clearfix required stringish" id="password_input">
+	    <%= label_tag :password, "Password:" %> 
+	    <div class="input"><%= password_field_tag :password %></div>
+		</div>
+	</fieldset>
+	<div class="actions">
+		<%= submit_tag "Login", {:class => "primary btn commit update" } %>
+	</div>
+
+  <div class="actions"></div>
+<% end %>

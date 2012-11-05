@@ -1,0 +1,42 @@
+<h1>Portfolio and Investment Allocations</h1>
+
+<br />
+<% unless @user.allocations[:to_setup].blank? %>
+<br />
+<h4>Accounts you should Setup</h4>
+<ul>
+<% @user.allocations[:to_allocation].each do |allocation| %>
+	<li><%= allocation[:title]%></li>
+<% end%>
+</ul>
+<% end %>
+
+<br />
+<h3>Recommended Account Investment Allocations</h3>
+<dl>
+<% @user.accounts_and_investment_assets.each do |allocation| %>
+	<dt><%= allocation[:person].name %>'s <%= allocation[:title]%> - Yearly Contribution: <%= number_to_currency(allocation[:amount]) %></dt>
+	<dd>
+		<table class='table table-striped' style='width: 800px;'>
+			<tr><th>Allocation</th><th>Yearly Amount</th><th>Symbol</th><th>Fund Name</th><th>Category</th></tr>
+			<% unless allocation[:assets].blank? %>
+				<% allocation[:assets].each_pair do |category_id, amount| %>
+					<% next if amount.to_f == 0 %>
+					<tr>				
+						<td><%= number_to_percentage(amount, :precision => 2) %></td>
+						<td><%= number_to_currency((amount.to_f/100 * allocation[:amount]).as_currency, :precision => 2) %></td>
+						<td><%= allocation[:person].send(allocation[:type]).get_asset(category_id, @user.plan).symbol %></td>
+						<td><%= allocation[:person].send(allocation[:type]).get_asset(category_id, @user.plan).name %></td>
+						<td><%= allocation[:person].send(allocation[:type]).get_asset(category_id, @user.plan).investment_asset_category.name %>
+					</tr>
+				<% end %>
+			<% else %>
+				<tr><td colspan='5'><b>You should be contributing to your 401k/403b.  Please add your available funds to your 401k/403b on the <%= link_to 'Accounts Page', investment_accounts_path %>.</td></tr>
+			<% end %>
+		</table>
+	</dd>
+	<% unless allocation[:person].account_exists?(allocation[:title]) %>
+	<div class='alert alert-error'>You'll need to create an <%= allocation[:title] %> for <%= allocation[:person].name%></div>
+	<% end %>
+<% end %>
+</dl>

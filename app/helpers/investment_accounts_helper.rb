@@ -1,0 +1,2 @@
+module InvestmentAccountsHelper
+end

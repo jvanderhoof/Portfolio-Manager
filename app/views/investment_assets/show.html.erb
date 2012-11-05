@@ -1,0 +1,31 @@
+<p>
+  <b>Name:</b>
+  <%= @investment_asset.name %>
+</p>
+
+<p>
+  <b>Symbol:</b>
+  <%= @investment_asset.symbol %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @investment_asset.asset_category %>
+</p>
+
+<p>
+  <b>Expense Ratio:</b>
+  <%= @investment_asset.expense_ratio %>
+</p>
+
+<p>
+  <b>Current Price:</b>
+  <%= @investment_asset.current_value %>
+</p>
+
+<p>
+	<b>Age:</b>
+	<%= (Date.today - @investment_asset.asset_histories.last.day).to_i/365 unless @investment_asset.asset_histories.blank? %>
+</p>
+
+<%= link_to 'Edit', edit_investment_asset_path(@investment_asset) if current_user && current_user.admin? %>

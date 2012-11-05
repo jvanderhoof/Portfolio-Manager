@@ -1,0 +1,23 @@
+<% if @plan.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this portfolio from being saved:</h2>
+
+    <ul>
+    <% @plan.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<fieldset>
+	<div>
+		<%= f.fields_for :investment_asset_category_plans do |iacp| %>
+			<%= render :partial => "investment_asset_category_plan_fields", :locals => {:f => iacp} %>
+		<% end %>
+		<p><%= link_to_add_fields "New Asset Category", f, :investment_asset_category_plans %></p>
+	</div>
+</fieldset>
+<div class="actions">
+  <%= f.submit "Save Plan", :class => 'btn-primary btn commit create' %>
+</div>

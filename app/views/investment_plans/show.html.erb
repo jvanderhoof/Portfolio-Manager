@@ -1,0 +1,62 @@
+<h1>Purchases for <%= @investment_plan.next_buy_date.strftime('%b %d, %Y') %></h1>
+<%= form_for @buy_list do |f| %>
+	<%= f.hidden_field :purchased, {:value => true} %>
+	<%= f.hidden_field :investment_plan_id, {:value => @investment_plan.id} %>	
+	<table class="table table-striped table-condensed table-outlined" style='width:700px'>
+		<tr>
+			<th>Count</th>
+			<th>Fund Name</th>
+			<th>Price</th>
+		</tr>
+		<%= f.fields_for :buy_list_assets do |bla| %>
+			<tr>
+				<td><%= bla.object.share_count %></td>
+				<td>(<%= bla.object.investment_asset.symbol %>) <%= bla.object.investment_asset.name.html_safe %></td>
+				<td><%= bla.text_field :share_price, :style => 'width:50px;' %></td>
+			</tr>
+			<%= bla.hidden_field :investment_asset_id %>
+			<%= bla.hidden_field :share_count %>
+			
+		<% end %>
+	<tr><td>&nbsp;</td><td>&nbsp;</td><td><b><%= number_to_currency(@buy_list.buy_list_assets.inject(0){|sum, i| sum + (i.share_count * i.share_price)}) %></b></td></tr>
+</table>
+
+	<%= f.submit('Mark as Purchased', {:class => "btn-primary"}) %>
+<% end %>
+
+<br />
+
+<h2>Investment Plan: <%= @investment_plan.name %></h2>
+<br />
+<table class='table' style='width: 500px'>
+	<tr>
+		<th>Portfolio:</th>
+		<td><%= link_to @investment_plan.portfolio.name, portfolio_path(@investment_plan.portfolio) %></td>
+	</tr>
+	<tr>
+		<th>Time Period:</th>
+		<td><%= @investment_plan.time_period %></td>
+	</tr>
+	<tr>
+		<th>Contribution Start Date:</th>
+		<td><%= @investment_plan.start_date.strftime('%b %d, %Y') %></td>
+	</tr>
+	<tr>
+		<th><%= @investment_plan.time_period %> Contribution:</th>
+		<td><%= number_to_currency(@investment_plan.contribution_amount) %></td>
+	</tr>
+	<tr>
+		<th>Initial Contribution:</th>
+		<td><%= number_to_currency(@investment_plan.initial_contribution) %></td>
+	</tr>
+	<tr>
+		<th>Unspent Amount:</th>
+		<td><%= number_to_currency(@investment_plan.banked_value) %></td>
+	</tr>
+	<tr>
+		<th>Email Notification?</th>
+		<td><%= (@investment_plan.email_updates?) ? 'Yes' : 'No' %></td>
+	</tr>
+</table>
+<%= link_to 'Edit', edit_investment_plan_path(@investment_plan), :class => 'btn btn-primary' %>
+

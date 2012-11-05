@@ -1,0 +1,26 @@
+<h1>Upcoming Purchases</h1>
+<br />
+<table class="table table-striped table-outlined" style='width:500px;'>
+<% current_user.investment_plans.sort{|x,y| x.next_buy_date <=> y.next_buy_date }.each do |ip| %>
+	<tr>
+		<td><%= ip.next_buy_date.strftime('%b %d, %Y') %> - <strong><%= ip.name %></strong> purchases</td>
+		<td><%= link_to 'Buy Now', investment_plan_path(ip), :class => 'btn btn-small' %></td>
+	</tr>
+<% end %>
+</table>
+
+<h2>Current Investment Plans</h2>
+<table class='table table-striped table-outlined'>
+	<tr>
+		<th>Plan</th>
+		<th>Current Value</th>
+		<th>Return to Date</th>
+	</tr>
+<% current_user.investment_plans.each do |ip| %>
+	<tr>
+		<td><%= link_to ip.name, investment_plan_path(ip) %></td>
+		<td><%= number_to_currency(ip.investment_plan_assets.inject(0){|sum, ipa| sum + ipa.shares * ipa.investment_asset.current_value }) %></td>
+		<td><%= number_to_percentage(ip.portfolio.total_return, :precision => 2) %></td>
+	</tr>
+<% end %>
+</table>

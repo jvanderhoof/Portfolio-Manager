@@ -1,0 +1,4 @@
+<%= f.fields_for :investment_accounts do |ia| %>
+	<%= render :partial => "investment_account_fields", :locals => {:f => ia} %>
+<% end %>
+<p style='margin-left:100px;'><%= link_to_add_fields "Add Account", f, :investment_accounts %></p>

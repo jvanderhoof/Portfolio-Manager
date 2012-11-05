@@ -1,0 +1,11 @@
+<%= semantic_form_for @investment_asset_category, :html => {:class => 'well form-horizontal'} do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+		<%= f.input :parent_id, :as => :select, :collection => InvestmentAssetCategory.order('name') %>
+    <%= f.input :key %>
+  <% end %>
+
+  <%= f.buttons do %>
+    <%= f.commit_button %>
+  <% end %>
+<% end %>
